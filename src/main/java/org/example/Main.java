@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.Services.EmployeeService.PopulateEmployees;
 
@@ -59,10 +60,20 @@ public class Main {
            }
        }
 
+       Stream<Employee> employeesListStream =  employees.stream();
 
+        //get only software engineer employees name from list of employees object
 
+      List<String> softwareEngineers =  employeesListStream.filter(x -> { return x.getTitle() == "Software Engineer"; }).
+                            map(x-> { return  x.getEmployeeName(); }).
+                            toList();
+        System.out.println(softwareEngineers.size());
+        softwareEngineers.forEach(x-> System.out.println(x));
 
-        System.out.println(occuranceTotal);
+        //Stream iterate
+       Stream<Integer> streamIterated = Stream.iterate(40, n -> n + 2).limit(20);
+       streamIterated.forEach(x-> System.out.println(x));
+
 
     }
 
